@@ -1,0 +1,56 @@
+[versions]
+adventure = "4.17.0"
+bstats = "3.0.2"
+commonsIo = "2.16.1"
+configlib = "4.8.1"
+dynmap = "3.8"
+fabricApi = "0.154.2+26.2"
+fabricLoader = "0.19.3"
+fabricLoom = "1.17.13"
+grgit = "5.2.2"
+jetbrainsAnnotations = "26.0.1"
+junit = "5.11.0"
+licenser = "2.2.2"
+lombok = "1.18.42"
+luckPerms = "5.4"
+minecraft = "26.2"
+miniPlaceholders = "3.2.0"
+netty = "4.2.16.Final"
+paperApi = "26.2.build.56-alpha"
+spigotApi = "26.2-R0.1-SNAPSHOT"
+shadow = "9.5.1"
+velocityApi = "4.1.0-SNAPSHOT"
+
+[plugins]
+fabric-loom = { id = "net.fabricmc.fabric-loom", version.ref = "fabricLoom" }
+grgit = { id = "org.ajoberstar.grgit", version.ref = "grgit" }
+licenser = { id = "dev.yumi.gradle.licenser", version.ref = "licenser" }
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
+
+[libraries]
+adventure-api = { module = "net.kyori:adventure-api" }
+adventure-bom = { module = "net.kyori:adventure-bom", version.ref = "adventure" }
+adventure-text-minimessage = { module = "net.kyori:adventure-text-minimessage" }
+adventure-text-serializer-legacy = { module = "net.kyori:adventure-text-serializer-legacy" }
+adventure-text-serializer-plain = { module = "net.kyori:adventure-text-serializer-plain" }
+bstats-velocity = { module = "org.bstats:bstats-velocity", version.ref = "bstats" }
+commons-io = { module = "commons-io:commons-io", version.ref = "commonsIo" }
+configlib-yaml = { module = "de.exlll:configlib-yaml", version.ref = "configlib" }
+dynmap-api = { module = "us.dynmap:dynmap-api", version.ref = "dynmap" }
+dynmap-core-api = { module = "us.dynmap:DynmapCoreAPI", version.ref = "dynmap" }
+fabric-api = { module = "net.fabricmc.fabric-api:fabric-api", version.ref = "fabricApi" }
+fabric-loader = { module = "net.fabricmc:fabric-loader", version.ref = "fabricLoader" }
+jetbrains-annotations = { module = "org.jetbrains:annotations", version.ref = "jetbrainsAnnotations" }
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine" }
+junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+luckperms-api = { module = "net.luckperms:api", version.ref = "luckPerms" }
+miniplaceholders-api = { module = "io.github.miniplaceholders:miniplaceholders-api", version.ref = "miniPlaceholders" }
+minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
+netty-transport = { module = "io.netty:netty-transport", version.ref = "netty" }
+paper-api = { module = "io.papermc.paper:paper-api", version.ref = "paperApi" }
+spigot-api = { module = "org.spigotmc:spigot-api", version.ref = "spigotApi" }
+velocity-api = { module = "com.velocitypowered:velocity-api", version.ref = "velocityApi" }

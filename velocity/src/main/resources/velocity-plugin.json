@@ -1,0 +1,30 @@
+{
+  "id": "veloairchat",
+  "name": "VeloAirChat",
+  "version": "${version}",
+  "description": "${description}",
+  "url": "https://airgalxie.de",
+  "authors": [
+    "AirGalxie",
+    "William278 (original HuskChat)"
+  ],
+  "dependencies": [
+    {
+      "id": "floodgate",
+      "optional": true
+    },
+    {
+      "id": "geyser",
+      "optional": true
+    },
+    {
+      "id": "luckperms",
+      "optional": true
+    },
+    {
+      "id": "miniplaceholders",
+      "optional": true
+    }
+  ],
+  "main": "de.airgalxie.veloairchat.VelocityVeloAirChat"
+}

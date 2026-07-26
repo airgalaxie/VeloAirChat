@@ -1,0 +1,32 @@
+base {
+    archivesName = 'VeloAirChat-Velocity'
+}
+
+dependencies {
+    implementation project(':common')
+    implementation project(':protocol')
+
+    compileOnly libs.velocity.api
+    compileOnly libs.adventure.text.serializer.plain
+    compileOnly libs.miniplaceholders.api
+    compileOnly libs.netty.transport
+    implementation libs.bstats.velocity
+
+    compileOnly libs.lombok
+    annotationProcessor libs.lombok
+}
+
+shadowJar {
+    archiveClassifier.set('')
+
+    // 1. Utils & IO (Sehr wichtig, da oft Konflikte bei commons-io)
+    relocate 'org.apache.commons.io', 'de.airgalxie.veloairchat.lib.commons-io'
+    relocate 'org.bstats', 'de.airgalxie.veloairchat.lib.bstats'
+
+    // 2. Konfigurations-Library
+    relocate 'de.exlll.configlib', 'de.airgalxie.veloairchat.lib.configlib'
+}
+
+jar {
+    archiveClassifier.set('plain')
+}

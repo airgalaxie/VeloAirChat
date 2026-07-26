@@ -1,0 +1,48 @@
+# Gradle
+.gradle/
+**/build/
+target/
+run/
+
+# Runtime output
+logs/
+**/logs/
+*.log
+
+# Local configuration and environment files
+.env
+.env.*
+*.local
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# Eclipse
+.classpath
+.project
+.settings/
+.factorypath
+.apt_generated/
+bin/
+
+# NetBeans
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# Visual Studio Code
+.vscode/
+
+# Local Codex/agent workspace metadata
+.agents/
+.codex/
+
+# Operating-system files
+.DS_Store
+Thumbs.db

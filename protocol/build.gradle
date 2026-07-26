@@ -1,0 +1,15 @@
+plugins {
+    id 'java-library'
+}
+
+base {
+    archivesName = 'VeloAirChat-Protocol'
+}
+
+dependencies {
+    compileOnly libs.jetbrains.annotations
+    testImplementation platform(libs.junit.bom)
+    testImplementation libs.junit.jupiter.api
+    testRuntimeOnly libs.junit.jupiter.engine
+    testRuntimeOnly libs.junit.platform.launcher
+}

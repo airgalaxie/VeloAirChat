@@ -1,0 +1,28 @@
+plugins {
+    id 'java-library'
+}
+
+base {
+    archivesName = 'VeloAirChat-Common'
+}
+
+dependencies {
+    // API - Laufzeitabhängigkeiten
+    api libs.commons.io
+
+    api libs.configlib.yaml
+
+    // CompileOnly (Wird von Velocity bereitgestellt)
+    compileOnly platform(libs.adventure.bom)
+    compileOnly libs.adventure.api
+    compileOnly libs.adventure.text.minimessage
+    compileOnly libs.adventure.text.serializer.legacy
+    compileOnly libs.jetbrains.annotations
+    compileOnly libs.luckperms.api
+    testImplementation platform(libs.adventure.bom)
+    testImplementation libs.adventure.api
+
+    // Required for Java 25 compiler support.
+    compileOnly libs.lombok
+    annotationProcessor libs.lombok
+}

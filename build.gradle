@@ -1,0 +1,291 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+import java.time.Instant
+import java.time.LocalDate
+import java.time.ZoneOffset
+
+plugins {
+    alias(libs.plugins.shadow)
+    alias(libs.plugins.licenser)
+    alias(libs.plugins.grgit)
+    id 'maven-publish'
+    id 'java'
+}
+
+group 'de.airgalxie'
+version "$ext.plugin_version"
+description "$ext.plugin_description"
+defaultTasks 'applyLicenses', 'build'
+
+def buildGitHash = resolveGitHash()
+def buildDate = resolveBuildDate()
+
+ext {
+    set 'version', version.toString()
+    set 'description', description.toString()
+
+    set 'velocity_api_version', libs.versions.velocityApi.get()
+    set 'velocity_minimum_build', velocity_minimum_build.toString()
+    set 'protocol_version', '4'
+    set 'minecraft_version', libs.versions.minecraft.get()
+    set 'build_git_hash', buildGitHash
+    set 'build_date', buildDate
+}
+
+base {
+    archivesName = plugin_archive
+}
+
+publishing {
+    repositories {
+        if (System.getenv("RELEASES_MAVEN_USERNAME") != null) {
+            maven {
+                name = "airgalxie-releases"
+                url = "https://repo.airgalxie.de/releases"
+                credentials {
+                    username = System.getenv("RELEASES_MAVEN_USERNAME")
+                    password = System.getenv("RELEASES_MAVEN_PASSWORD")
+                }
+                authentication {
+                    basic(BasicAuthentication)
+                }
+            }
+        }
+        if (System.getenv("SNAPSHOTS_MAVEN_USERNAME") != null) {
+            maven {
+                name = "airgalxie-snapshots"
+                url = "https://repo.airgalxie.de/snapshots"
+                credentials {
+                    username = System.getenv("SNAPSHOTS_MAVEN_USERNAME")
+                    password = System.getenv("SNAPSHOTS_MAVEN_PASSWORD")
+                }
+                authentication {
+                    basic(BasicAuthentication)
+                }
+            }
+        }
+    }
+}
+
+allprojects {
+    apply plugin: 'com.gradleup.shadow'
+    apply plugin: 'dev.yumi.gradle.licenser'
+    apply plugin: 'java'
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(javaVersion as int)
+        }
+    }
+    compileJava.options.encoding = 'UTF-8'
+    compileJava.options.release.set(javaVersion as int)
+    javadoc.options.encoding = 'UTF-8'
+    javadoc.options.addStringOption('Xdoclint:none', '-quiet')
+
+    dependencies {
+        testImplementation platform(libs.junit.bom)
+        testImplementation libs.junit.jupiter.api
+        testImplementation libs.junit.jupiter.params
+        testRuntimeOnly libs.junit.jupiter.engine
+        testRuntimeOnly libs.junit.platform.launcher
+
+        testCompileOnly libs.jetbrains.annotations
+    }
+
+    license {
+        // Add a license header rule, at least one must be present.
+        rule(rootProject.file('HEADER'))
+
+        // Exclude/include certain file types, defaults are provided to easily deal with Java/Kotlin projects.
+        include("**/*.java") // Include Java files into the file resolution.
+        exclude("**/*.properties") // Exclude properties files from the file resolution.
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    processResources {
+        def resourceTokens = [
+                version               : rootProject.version.toString(),
+                description           : rootProject.description.toString(),
+                velocity_api_version  : rootProject.velocity_api_version.toString(),
+                velocity_minimum_build: rootProject.velocity_minimum_build.toString(),
+                protocol_version      : rootProject.protocol_version.toString(),
+                minecraft_version     : rootProject.minecraft_version.toString(),
+                build_git_hash        : rootProject.build_git_hash.toString(),
+                build_date            : rootProject.build_date.toString()
+        ]
+
+        filesMatching(['**/*.json', '**/*.yml']) {
+            filter ReplaceTokens as Class, beginToken: '${', endToken: '}',
+                    tokens: resourceTokens
+        }
+    }
+
+    tasks.withType(Jar).configureEach {
+        manifest {
+            attributes(
+                    'Implementation-Title': rootProject.name,
+                    'Implementation-Version': rootProject.version,
+                    'VeloAirChat-Protocol': rootProject.protocol_version,
+                    'VeloAirChat-Minecraft': rootProject.minecraft_version,
+                    'VeloAirChat-Git': rootProject.build_git_hash,
+                    'VeloAirChat-Built': rootProject.build_date
+            )
+        }
+    }
+}
+
+
+subprojects {
+    version rootProject.version
+
+    jar {
+        from '../LICENSE'
+    }
+
+    // API publishing
+    if (['common', 'paper', 'velocity', 'bungee'].contains(project.name)) {
+        java {
+            withSourcesJar()
+            withJavadocJar()
+        }
+        shadowJar.dependsOn(sourcesJar, javadocJar)
+
+        publishing {
+            if (['common'].contains(project.name)) {
+                publications {
+                    mavenJavaCommon(MavenPublication) {
+                        groupId = 'de.airgalxie.veloairchat'
+                        artifactId = 'veloairchat-common'
+                        version = "$rootProject.version"
+                        artifact shadowJar
+                        artifact sourcesJar
+                        artifact javadocJar
+                    }
+                }
+            }
+
+            if (['paper'].contains(project.name)) {
+                publications {
+                    mavenJavaPaper(MavenPublication) {
+                        groupId = 'de.airgalxie.veloairchat'
+                        artifactId = 'veloairchat-paper'
+                        version = "$rootProject.version"
+                        artifact shadowJar
+                        artifact sourcesJar
+                        artifact javadocJar
+                    }
+                }
+            }
+
+            if (['velocity'].contains(project.name)) {
+                publications {
+                    mavenJavaVelocity(MavenPublication) {
+                        groupId = 'de.airgalxie.veloairchat'
+                        artifactId = 'veloairchat-velocity'
+                        version = "$rootProject.version"
+                        artifact shadowJar
+                        artifact sourcesJar
+                        artifact javadocJar
+                    }
+                }
+            }
+
+            if (['bungee'].contains(project.name)) {
+                publications {
+                    mavenJavaBungee(MavenPublication) {
+                        groupId = 'de.airgalxie.veloairchat'
+                        artifactId = 'veloairchat-bungee'
+                        version = "$rootProject.version"
+                        artifact shadowJar
+                        artifact sourcesJar
+                        artifact javadocJar
+                    }
+                }
+            }
+        }
+    }
+
+    jar.dependsOn shadowJar
+}
+
+tasks.register('cleanDeploymentTarget', Delete) {
+    delete layout.projectDirectory.dir('target')
+}
+
+tasks.register('releaseJars', Copy) {
+    group = 'build'
+    description = 'Collects the final installable Velocity, Paper, and Fabric release artifacts into target/.'
+
+    dependsOn cleanDeploymentTarget
+    dependsOn ':velocity:shadowJar', ':paper:shadowJar', ':fabric:build'
+
+    into layout.projectDirectory.dir('target')
+
+    from(project(':velocity').tasks.named('shadowJar').flatMap { it.archiveFile }) {
+        rename { "VeloAirChat-Velocity-${rootProject.version}.jar" }
+    }
+    from(project(':paper').tasks.named('shadowJar').flatMap { it.archiveFile }) {
+        rename { "VeloAirChat-Paper-${rootProject.version}.jar" }
+    }
+    from(project(':fabric').tasks.named('jar').flatMap { it.archiveFile }) {
+        rename { "VeloAirChat-Fabric-${rootProject.version}.jar" }
+    }
+}
+
+tasks.register('collectDeployableJars') {
+    group = 'build'
+    description = 'Deprecated alias for releaseJars.'
+    dependsOn releaseJars
+}
+
+tasks.named('build') {
+    dependsOn releaseJars
+}
+
+tasks.named('clean') {
+    dependsOn cleanDeploymentTarget
+}
+
+logger.lifecycle(
+        "Building VeloAirChat ${version} " +
+                "(Protocol v${protocol_version}, Minecraft ${minecraft_version}, " +
+                "Git ${build_git_hash}, Built ${build_date})"
+)
+
+@SuppressWarnings('GrMethodMayBeStatic')
+def resolveGitHash() {
+    def ciHash = System.getenv('GITHUB_SHA') ?: System.getenv('GIT_COMMIT')
+    if (ciHash != null && !ciHash.isBlank()) {
+        return ciHash.take(7)
+    }
+
+    try {
+        if (grgit != null) {
+            return grgit.head().abbreviatedId
+        }
+    } catch (Exception ignored) {
+        // Source archives and ZIP downloads do not necessarily contain Git metadata.
+    }
+
+    return 'unknown'
+}
+
+@SuppressWarnings('GrMethodMayBeStatic')
+def resolveBuildDate() {
+    def configuredDate = System.getenv('BUILD_DATE')
+    if (configuredDate != null && !configuredDate.isBlank()) {
+        return LocalDate.parse(configuredDate).toString()
+    }
+
+    def sourceDateEpoch = System.getenv('SOURCE_DATE_EPOCH')
+    if (sourceDateEpoch != null && !sourceDateEpoch.isBlank()) {
+        return Instant.ofEpochSecond(sourceDateEpoch as long)
+                .atZone(ZoneOffset.UTC)
+                .toLocalDate()
+                .toString()
+    }
+
+    return LocalDate.now(ZoneOffset.UTC).toString()
+}

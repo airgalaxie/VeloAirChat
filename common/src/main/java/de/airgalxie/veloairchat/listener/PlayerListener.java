@@ -1,0 +1,83 @@
+/*
+ * This file is part of VeloAirChat, licensed under the Apache License 2.0.
+ *
+ *  Copyright (c) William278 <will27528@gmail.com>
+ *  Original project: HuskChat by William278
+ *  Modifications Copyright (c) AirGalxie/VeloAirChat contributors
+ *  Copyright (c) contributors
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+package de.airgalxie.veloairchat.listener;
+
+import lombok.AllArgsConstructor;
+import de.airgalxie.veloairchat.VeloAirChat;
+import de.airgalxie.veloairchat.channel.Channel;
+import de.airgalxie.veloairchat.user.OnlineUser;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Map;
+import java.util.Optional;
+
+@AllArgsConstructor
+public abstract class PlayerListener {
+
+    protected final VeloAirChat plugin;
+
+    // Handle server switches
+    public final void handlePlayerSwitchServer(@NotNull OnlineUser player, @NotNull String newServer) {
+        // Switch to the default channel for the server if there is one
+        final Optional<String> defaultChannel = plugin.getChannels().getServerDefaultChannel(newServer);
+        if (defaultChannel.isPresent()) {
+            plugin.editUserCache(c -> c.switchPlayerChannelSilently(player, defaultChannel.get(), plugin));
+            return;
+        }
+
+        // Switch channels to the default one if they don't have one
+        final Optional<String> currentChannel = plugin.getUserCache().getPlayerChannel(player.getUuid());
+        if (currentChannel.isEmpty()) {
+            plugin.editUserCache(c -> c.switchPlayerChannelSilently(player, plugin.getChannels().getDefaultChannel(), plugin));
+            return;
+        }
+
+        // Switch the player's channel away if their current channel is now restricted
+        plugin.getChannels().getChannels().stream()
+                .filter(channel -> channel.getId().equalsIgnoreCase(currentChannel.get()))
+                .findFirst().filter(channel -> channel.isServerRestricted(newServer))
+                .ifPresent(restricted -> plugin.editUserCache(c -> c
+                        .switchPlayerChannelSilently(player, plugin.getChannels().getDefaultChannel(), plugin)));
+    }
+
+    // Handle player joins
+    public final void handlePlayerJoin(@NotNull OnlineUser player) {
+        handlePlayerSwitchServer(player, player.getServerName());
+        if (plugin.getSettings().getJoinAndQuitMessages().getBroadcastScope() == Channel.BroadcastScope.PASSTHROUGH) {
+            return;
+        }
+        if (plugin.getSettings().getJoinAndQuitMessages().getJoin().isEnabled()) {
+            plugin.getLocales().sendJoinMessage(player, plugin);
+        }
+    }
+
+    // Handle player quits
+    public final void handlePlayerQuit(@NotNull OnlineUser player) {
+        if (plugin.getSettings().getJoinAndQuitMessages().getBroadcastScope() == Channel.BroadcastScope.PASSTHROUGH) {
+            return;
+        }
+        if (plugin.getSettings().getJoinAndQuitMessages().getQuit().isEnabled()) {
+            plugin.getLocales().sendQuitMessage(player, plugin);
+        }
+    }
+
+}

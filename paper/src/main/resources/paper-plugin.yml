@@ -1,0 +1,20 @@
+name: VeloAirChatPaperBridge
+version: ${version}
+main: de.airgalxie.veloairchat.paper.VeloAirChatPaperBridge
+api-version: '26.2'
+author: AirGalxie
+description: Paper platform adapter for the central Velocity core
+dependencies:
+  server:
+    PlaceholderAPI:
+      load: BEFORE
+      required: false
+      join-classpath: true
+    LuckPerms:
+      load: BEFORE
+      required: false
+      join-classpath: true
+    dynmap:
+      load: BEFORE
+      required: false
+      join-classpath: true

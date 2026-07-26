@@ -1,0 +1,27 @@
+base {
+    archivesName = 'VeloAirChat-Paper'
+}
+
+dependencies {
+    implementation project(':protocol')
+    compileOnly platform(libs.adventure.bom)
+    compileOnly libs.adventure.api
+    compileOnly libs.adventure.text.minimessage
+    compileOnly libs.adventure.text.serializer.legacy
+    compileOnly libs.adventure.text.serializer.plain
+    compileOnly libs.dynmap.api
+    compileOnly libs.dynmap.core.api
+    testImplementation libs.dynmap.core.api
+    compileOnly libs.jetbrains.annotations
+    compileOnly libs.paper.api
+    testImplementation libs.paper.api
+    compileOnly libs.luckperms.api
+}
+
+shadowJar {
+    archiveClassifier.set('')
+}
+
+jar {
+    archiveClassifier.set('plain')
+}

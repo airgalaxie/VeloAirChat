@@ -1,0 +1,50 @@
+plugins {
+    alias(libs.plugins.fabric.loom)
+}
+
+base {
+    archivesName = 'VeloAirChat-Fabric'
+}
+
+repositories {
+    maven { url 'https://repo.mikeprimm.com/' }
+}
+
+dependencies {
+    implementation project(':protocol')
+    minecraft libs.minecraft
+    implementation libs.fabric.loader
+    implementation libs.fabric.api
+    compileOnly libs.dynmap.core.api
+    testImplementation libs.dynmap.core.api
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(javaVersion as int)
+    }
+}
+
+compileJava.options.release.set(javaVersion as int)
+
+processResources {
+    inputs.property 'version', rootProject.version.toString()
+    filesMatching('fabric.mod.json') {
+        expand version: rootProject.version.toString()
+    }
+}
+
+jar {
+    archiveClassifier.set('')
+    from project(':protocol').sourceSets.main.output
+}
+
+tasks.register('remapJar') {
+    group = 'build'
+    description = 'Compatibility alias; this Loom setup produces the installable Fabric jar via jar.'
+    dependsOn jar
+}
+
+shadowJar {
+    enabled = false
+}
