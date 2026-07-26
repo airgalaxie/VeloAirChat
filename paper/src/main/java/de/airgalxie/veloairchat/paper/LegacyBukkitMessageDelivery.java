@@ -1,10 +1,7 @@
 /*
  * This file is part of VeloAirChat, licensed under the Apache License 2.0.
  *
- *  Copyright (c) William278 <will27528@gmail.com>
- *  Original project: HuskChat by William278
- *  Modifications Copyright (c) AirGalxie/VeloAirChat contributors
- *  Copyright (c) contributors
+ *  Copyright (c) AirGalxie/VeloAirChat contributors
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.

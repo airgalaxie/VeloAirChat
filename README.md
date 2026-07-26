@@ -174,7 +174,11 @@ For the first implementation each backend publishes only to its locally installe
 
 VeloAirChat began as a fork of HuskChat by William278.
 
-Original project copyright remains attributed to William278 and contributors. VeloAirChat modifications are maintained by AirGalxie/VeloAirChat contributors.
+Files that still contain copyrightable source code from HuskChat retain their
+copyright attribution to William278 and contributors. Independently written
+VeloAirChat files are attributed to AirGalxie/VeloAirChat contributors. The
+project's historical origin, ideas and architecture alone do not imply
+William278 copyright in newly written files.
 
 ## License
 
