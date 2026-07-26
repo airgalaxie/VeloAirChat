@@ -180,4 +180,4 @@ Original project copyright remains attributed to William278 and contributors. Ve
 
 Licensed under the Apache License 2.0. See [LICENSE](LICENSE).
 
-Project site: https://airgalxie.de
+Project site: https://static-mc.airgalaxie.de/

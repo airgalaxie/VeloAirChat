@@ -9,7 +9,7 @@ Pre-release versions are supported on a best-effort basis.
 
 Do not open a public issue for a vulnerability that could put servers or
 players at risk. Contact the project maintainer privately through the contact
-method published on [airgalxie.de](https://airgalxie.de).
+method published on [static-mc.airgalaxie.de](https://static-mc.airgalaxie.de/).
 
 Include the affected version, platform, reproduction steps, impact and any
 known mitigations. Please allow the maintainer time to investigate before

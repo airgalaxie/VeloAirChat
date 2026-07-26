@@ -17,4 +17,4 @@ Welcome! This is the plugin documentation for VeloAirChat, a Velocity-focused ch
 * 📄 [Attribution](Attribution.md)
 
 ## Links
-* 🌐 [airgalxie.de](https://airgalxie.de)
+* 🌐 [static-mc.airgalaxie.de](https://static-mc.airgalaxie.de/)

@@ -45,7 +45,7 @@ public class Filters {
             ┃      VeloAirChat - Filters   ┃
             ┃    Maintained by AirGalxie   ┃
             ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-            ┣╸ Information: https://airgalxie.de
+            ┣╸ Information: https://static-mc.airgalaxie.de/
             ┗╸ Original project: HuskChat by William278""";
 
     private Map<ChatFilter.Type, ChatFilter.FilterSettings> filters = new HashMap<>(Map.of(

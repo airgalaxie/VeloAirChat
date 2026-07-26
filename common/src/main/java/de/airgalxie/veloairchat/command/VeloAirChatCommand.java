@@ -67,7 +67,7 @@ public class VeloAirChatCommand extends CommandBase {
                         "<gray>Version " + plugin.getVersion() + "</gray><br>" +
                         "<gray>Entwickelt von <white>AirGalxie</white></gray><br>" +
                         "<gray>Basierend auf HuskChat von <white>William278</white></gray><br><br>" +
-                        "<click:open_url:'https://airgalxie.de'><hover:show_text:'airgalxie.de öffnen'>[Projekt]</hover></click><br>" +
+                        "<click:open_url:'https://static-mc.airgalaxie.de/'><hover:show_text:'static-mc.airgalaxie.de öffnen'>[Projekt]</hover></click><br>" +
                         "<separator>"
         );
         player.sendMessage(about);

@@ -51,7 +51,7 @@ public class Channels {
             ┃      VeloAirChat - Channels  ┃
             ┃    Maintained by AirGalxie   ┃
             ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-            ┣╸ Information: https://airgalxie.de
+            ┣╸ Information: https://static-mc.airgalaxie.de/
             ┗╸ Original project: HuskChat by William278""";
 
     @Comment("The default chat channel players are placed in (can be overridden by server_default_channels)")

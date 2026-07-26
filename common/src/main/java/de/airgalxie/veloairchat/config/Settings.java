@@ -51,8 +51,8 @@ public class Settings {
             ┃       VeloAirChat - Config   ┃
             ┃    Maintained by AirGalxie   ┃
             ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-            ┣╸ Information: https://airgalxie.de
-            ┣╸ Config Help: https://airgalxie.de
+            ┣╸ Information: https://static-mc.airgalaxie.de/
+            ┣╸ Config Help: https://static-mc.airgalaxie.de/
             ┗╸ Original project: HuskChat by William278""";
 
     @Comment("Locale of the default language file to use.")
