@@ -20,11 +20,11 @@ shadowJar {
     archiveClassifier.set('')
 
     // 1. Utils & IO (Sehr wichtig, da oft Konflikte bei commons-io)
-    relocate 'org.apache.commons.io', 'de.airgalxie.veloairchat.lib.commons-io'
-    relocate 'org.bstats', 'de.airgalxie.veloairchat.lib.bstats'
+    relocate 'org.apache.commons.io', 'de.airgalaxie.veloairchat.lib.commons-io'
+    relocate 'org.bstats', 'de.airgalaxie.veloairchat.lib.bstats'
 
     // 2. Konfigurations-Library
-    relocate 'de.exlll.configlib', 'de.airgalxie.veloairchat.lib.configlib'
+    relocate 'de.exlll.configlib', 'de.airgalaxie.veloairchat.lib.configlib'
 }
 
 jar {

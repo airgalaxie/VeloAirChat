@@ -11,7 +11,7 @@ plugins {
     id 'java'
 }
 
-group 'de.airgalxie'
+group 'de.airgalaxie'
 version "$ext.plugin_version"
 description "$ext.plugin_description"
 defaultTasks 'applyLicenses', 'build'
@@ -39,8 +39,8 @@ publishing {
     repositories {
         if (System.getenv("RELEASES_MAVEN_USERNAME") != null) {
             maven {
-                name = "airgalxie-releases"
-                url = "https://repo.airgalxie.de/releases"
+                name = "airgalaxie-releases"
+                url = "https://repo.airgalaxie.de/releases"
                 credentials {
                     username = System.getenv("RELEASES_MAVEN_USERNAME")
                     password = System.getenv("RELEASES_MAVEN_PASSWORD")
@@ -52,8 +52,8 @@ publishing {
         }
         if (System.getenv("SNAPSHOTS_MAVEN_USERNAME") != null) {
             maven {
-                name = "airgalxie-snapshots"
-                url = "https://repo.airgalxie.de/snapshots"
+                name = "airgalaxie-snapshots"
+                url = "https://repo.airgalaxie.de/snapshots"
                 credentials {
                     username = System.getenv("SNAPSHOTS_MAVEN_USERNAME")
                     password = System.getenv("SNAPSHOTS_MAVEN_PASSWORD")
@@ -156,7 +156,7 @@ subprojects {
             if (['common'].contains(project.name)) {
                 publications {
                     mavenJavaCommon(MavenPublication) {
-                        groupId = 'de.airgalxie.veloairchat'
+                        groupId = 'de.airgalaxie.veloairchat'
                         artifactId = 'veloairchat-common'
                         version = "$rootProject.version"
                         artifact shadowJar
@@ -169,7 +169,7 @@ subprojects {
             if (['paper'].contains(project.name)) {
                 publications {
                     mavenJavaPaper(MavenPublication) {
-                        groupId = 'de.airgalxie.veloairchat'
+                        groupId = 'de.airgalaxie.veloairchat'
                         artifactId = 'veloairchat-paper'
                         version = "$rootProject.version"
                         artifact shadowJar
@@ -182,7 +182,7 @@ subprojects {
             if (['velocity'].contains(project.name)) {
                 publications {
                     mavenJavaVelocity(MavenPublication) {
-                        groupId = 'de.airgalxie.veloairchat'
+                        groupId = 'de.airgalaxie.veloairchat'
                         artifactId = 'veloairchat-velocity'
                         version = "$rootProject.version"
                         artifact shadowJar
@@ -195,7 +195,7 @@ subprojects {
             if (['bungee'].contains(project.name)) {
                 publications {
                     mavenJavaBungee(MavenPublication) {
-                        groupId = 'de.airgalxie.veloairchat'
+                        groupId = 'de.airgalaxie.veloairchat'
                         artifactId = 'veloairchat-bungee'
                         version = "$rootProject.version"
                         artifact shadowJar

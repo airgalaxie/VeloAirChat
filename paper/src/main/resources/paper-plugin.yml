@@ -1,8 +1,8 @@
 name: VeloAirChatPaperBridge
 version: ${version}
-main: de.airgalxie.veloairchat.paper.VeloAirChatPaperBridge
+main: de.airgalaxie.veloairchat.paper.VeloAirChatPaperBridge
 api-version: '26.2'
-author: AirGalxie
+author: AirGalaxie
 description: Paper platform adapter for the central Velocity core
 dependencies:
   server:

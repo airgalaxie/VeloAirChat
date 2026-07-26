@@ -5,13 +5,13 @@
   "name": "VeloAirChat Fabric Bridge",
   "description": "Fabric platform adapter for the central VeloAirChat Velocity core",
   "authors": [
-    "AirGalxie"
+    "AirGalaxie"
   ],
   "license": "Apache-2.0",
   "environment": "server",
   "entrypoints": {
     "main": [
-      "de.airgalxie.veloairchat.fabric.VeloAirChatFabricBridge"
+      "de.airgalaxie.veloairchat.fabric.VeloAirChatFabricBridge"
     ]
   },
   "depends": {

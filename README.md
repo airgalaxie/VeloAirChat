@@ -5,7 +5,7 @@ Minecraft proxy networks.
 
 VeloAirChat began as a fork of HuskChat by William278. Since then, it has
 developed its own central architecture, backend protocol, identity model and
-rendering pipeline under the AirGalxie/VeloAirChat identity. HuskChat remains
+rendering pipeline under the AirGalaxie/VeloAirChat identity. HuskChat remains
 the origin of the project, but VeloAirChat is maintained and released as an
 independent project.
 
@@ -176,7 +176,7 @@ VeloAirChat began as a fork of HuskChat by William278.
 
 Files that still contain copyrightable source code from HuskChat retain their
 copyright attribution to William278 and contributors. Independently written
-VeloAirChat files are attributed to AirGalxie/VeloAirChat contributors. The
+VeloAirChat files are attributed to AirGalaxie/VeloAirChat contributors. The
 project's historical origin, ideas and architecture alone do not imply
 William278 copyright in newly written files.
 

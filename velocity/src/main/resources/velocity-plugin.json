@@ -5,7 +5,7 @@
   "description": "${description}",
   "url": "https://static-mc.airgalaxie.de/",
   "authors": [
-    "AirGalxie",
+    "AirGalaxie",
     "William278 (original HuskChat)"
   ],
   "dependencies": [
@@ -26,5 +26,5 @@
       "optional": true
     }
   ],
-  "main": "de.airgalxie.veloairchat.VelocityVeloAirChat"
+  "main": "de.airgalaxie.veloairchat.VelocityVeloAirChat"
 }

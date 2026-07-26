@@ -3,7 +3,7 @@ and is now maintained as an independent project.
 
 Files that still contain copyrightable source code from HuskChat retain their
 copyright attribution to William278 and contributors. Independently written
-VeloAirChat files are attributed to AirGalxie/VeloAirChat contributors.
+VeloAirChat files are attributed to AirGalaxie/VeloAirChat contributors.
 
 The historical origin of VeloAirChat, and ideas or architecture shared with
 HuskChat, are recorded as project attribution. They do not by themselves
@@ -28,18 +28,18 @@ architecture were not treated as evidence of source-code authorship.
 The following 64 files retain both the William278 and VeloAirChat contributor
 attributions:
 
-- `common/src/main/java/de/airgalxie/veloairchat/VeloAirChat.java`
+- `common/src/main/java/de/airgalaxie/veloairchat/VeloAirChat.java`
 - every Java file present at the audited revision in
-  `common/src/main/java/de/airgalxie/veloairchat/api/`,
+  `common/src/main/java/de/airgalaxie/veloairchat/api/`,
   `channel/`, `command/`, `config/`, `event/`, `filter/`, `getter/`,
   `listener/`, `message/`, `placeholders/` and `user/`
-- `common/src/main/java/de/airgalxie/veloairchat/util/AudiencesProvider.java`
+- `common/src/main/java/de/airgalaxie/veloairchat/util/AudiencesProvider.java`
 - every Java file present at the audited revision in
-  `common/src/test/java/de/airgalxie/veloairchat/channel/`, `filter/` and
+  `common/src/test/java/de/airgalaxie/veloairchat/channel/`, `filter/` and
   `user/`
-- `velocity/src/main/java/de/airgalxie/veloairchat/VelocityVeloAirChat.java`
+- `velocity/src/main/java/de/airgalaxie/veloairchat/VelocityVeloAirChat.java`
 - every Java file present at the audited revision in
-  `velocity/src/main/java/de/airgalxie/veloairchat/api/`, `command/`, `event/`,
+  `velocity/src/main/java/de/airgalaxie/veloairchat/api/`, `command/`, `event/`,
   `listener/` and `user/`
 
 These files have direct HuskChat counterparts and retain concrete
@@ -57,16 +57,16 @@ The following 39 files contain no copyrightable HuskChat source and carry
 only the VeloAirChat contributor attribution:
 
 - every Java file present at the audited revision in
-  `common/src/main/java/de/airgalxie/veloairchat/context/`
-- `common/src/main/java/de/airgalxie/veloairchat/util/MessageFormatter.java`
-- `common/src/test/java/de/airgalxie/veloairchat/context/ChatContextPlaceholdersTest.java`
+  `common/src/main/java/de/airgalaxie/veloairchat/context/`
+- `common/src/main/java/de/airgalaxie/veloairchat/util/MessageFormatter.java`
+- `common/src/test/java/de/airgalaxie/veloairchat/context/ChatContextPlaceholdersTest.java`
 - every Java file present at the audited revision under `fabric/src/`
 - every Java file present at the audited revision under `paper/src/`
 - every Java file present at the audited revision under `protocol/src/`
 - every Java file present at the audited revision in
-  `velocity/src/main/java/de/airgalxie/veloairchat/bridge/`, `core/`,
+  `velocity/src/main/java/de/airgalaxie/veloairchat/bridge/`, `core/`,
   `placeholders/` and `security/`
-- `velocity/src/test/java/de/airgalxie/veloairchat/core/SignedChatPolicyTest.java`
+- `velocity/src/test/java/de/airgalaxie/veloairchat/core/SignedChatPolicyTest.java`
 
 These files have no HuskChat counterpart. A cross-file comparison against all
 HuskChat Java sources found only language and API boilerplate or short
