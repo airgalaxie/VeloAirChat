@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="images/banner.png" alt="VeloAirChat — One Authority. Every Voice.">
+</p>
+
 # VeloAirChat
 
 VeloAirChat is an independently developed, Velocity-centered chat system for

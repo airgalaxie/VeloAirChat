@@ -35,7 +35,7 @@ public class VeloAirChatCommand extends CommandBase {
 
     public VeloAirChatCommand(@NotNull VeloAirChat plugin) {
         // Velocity nutzt meist List.of für Aliase
-        super(List.of("veloairchat", "huskchat"), "[about|reload]", plugin);
+        super(List.of("veloairchat", "vac"), "[about|reload]", plugin);
         this.operatorOnly = true;
     }
 
